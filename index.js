@@ -1,16 +1,15 @@
-import express from 'express'
+import express from 'express';
 
 const app = express();
 const port = 4000;
 
+import './Connection/Conn.js'; 
 
-import './Connection/Conn.js';
 
-app.get('/',(req,res)=>{
-    res.send({
-        message:"Backend is started"
-    })
-})
+import AuthRoutes from './Routes/User.js'; 
 
-app.listen(port,()=>{console.log("running on 4000")})
+app.use('/auth', AuthRoutes);
 
+app.listen(port, () => {
+    console.log("Running on port 4000");
+});
