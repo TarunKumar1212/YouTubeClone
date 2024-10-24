@@ -1,6 +1,6 @@
 import User from "../Modals/User.js";
 import bcrypt from "bcryptjs"
-import Jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken"; 
 
 const cookieOptions = {
   httpOnly: true,
@@ -29,6 +29,9 @@ const signUp = async (req, res) => {
 
 const signIn = async(req,res) =>{
     try{
+
+      
+      
         const { userName, password } = req.body;
         const user = await User.findOne({ userName });
         
@@ -46,6 +49,12 @@ const signIn = async(req,res) =>{
         res.status(500).json({ error: 'Server error' });
     }
 }
+
+
+
+
+
+
 
 
 const logout = async(req,res)=>{
