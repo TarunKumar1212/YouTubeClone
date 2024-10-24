@@ -1,5 +1,6 @@
 import User from "../Modals/User.js";
 import bcrypt from "bcryptjs"
+import Jwt  from "jsonwebtoken";
 
 const cookieOptions = {
   httpOnly: true,
@@ -33,7 +34,10 @@ const signIn = async(req,res) =>{
         
         if(user && await bcrypt.compare(password,user.password))
         {
-            res.json({message:'Logged in Successfully',success:'true'})
+            const token = jwt.sign({userId:user._id},'Its_My_Secret_Key')
+            res.cookie('token',token,cookieOptions)
+
+            res.json({message:'Logged in Successfully',success:'true',token})
         }else{
             res.status(400).json({error:'Invalid credentials'})
         }
