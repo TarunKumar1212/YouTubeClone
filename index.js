@@ -13,10 +13,12 @@ app.use(cookieParser())
 
 import AuthRoutes from './Routes/User.js'; 
 import VideoRoutes from './Routes/Video.js'
+import CommentRoutes from './Routes/Comment.js'
 
 
 app.use('/auth', AuthRoutes);
 app.use('/api', VideoRoutes);
+app.use('/commentApi',CommentRoutes)
 
 app.listen(port, () => {
     console.log("Running on port 4000");

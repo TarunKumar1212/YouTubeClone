@@ -1,10 +1,18 @@
-import Comment from '../Modals/Comment'
+import Comment from '../Modals/Comment.js'
 
 
 
 const addComment = async(req,res)=>{
     try{
-        // please watch the video for the code
+       
+        let {video,message} = req.body
+        const comment = new Comment({user : req.user._id,video,message})
+        await comment.save()
+       
+        res.status(201).json({
+            message : "success",
+            comment
+        })
 
     } catch (error){
         res.status(500).json({ error: 'Server error' });
@@ -14,7 +22,14 @@ const addComment = async(req,res)=>{
 
 const getCommentByVideoId = async(req,res)=>{
     try{
-         // please watch the video for the code
+         let {videoId} = req.params
+         const comments = await Comment.find({video: videoId}).populate('user','channelName profilePic userName createdAt about');
+
+         res.status(201)
+         .json({
+            message : "sucess",
+            comments
+         })
 
     } catch (error){
         res.status(500).json({ error: 'Server error' });

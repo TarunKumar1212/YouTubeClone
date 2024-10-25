@@ -2,8 +2,8 @@ import express from 'express';
 import  {
     addComment,
     getCommentByVideoId
-} from '../Controllers/Comment'
-import auth from '../middleware/authentication';
+    } from '../Controllers/Comment.js'
+import {auth} from '../middleware/auth.js';
 
 const router = express.Router();
 
