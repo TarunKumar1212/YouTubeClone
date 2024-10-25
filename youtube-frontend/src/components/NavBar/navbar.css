@@ -8,11 +8,11 @@
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    top:0;
+    top: 0;
     position: fixed;
     background-color: black;
     z-index: 10;
-}
+}   
 
 .navbar-left{
     gap: 10px;
@@ -21,7 +21,6 @@
     align-items: center;
     width: fit-content;
 }
-
 .navbarHamberger{
     width: 40px;
     height: 40px;
@@ -31,7 +30,7 @@
     cursor: pointer;
 }
 
-.nabar-youtubeImg{
+.navbar_youtubeImg{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,38 +38,40 @@
     color: white;
     text-decoration: none;
 }
-/* .nabbar-youtubeImg{
+.navbar_youtubeImage{
     color: red;
-} */
-
-.navbar-utubeTitle{
+}
+.navbar_utubeTitle{
     font-size: 20px;
-    word-spacing: 0;
-    letter-spacing: 0;
+    word-spacing: 0px;
+    letter-spacing: 0px;
     font-family: "Lora", serif;
     font-optical-sizing: auto;
-    font-weight: 600 ;
+    font-weight: 600;
     font-style: normal;
 }
 
-.navBar-center{
+/* --------- left-navbar Part ends---------------- */
+
+.navbar-middle{
     display: flex;
     gap: 10px;
     width: 50%;
 }
-.navBar-searchBox{
+.navbar_searchBox{
     width: 80%;
     display: flex;
 }
-.searchBox{
+.navbar_searchBoxInput{
     width: 100%;
     height: 40px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    border: 1px solid rgb(58,57,57);
+    border: 1px solid rgb(58, 57, 57);
     background-color: #121212;
     color: white;
     font-size: 16px;
+
     padding-left: 30px;
     &:focus{
         outline: none;
@@ -79,6 +80,7 @@
         font-size: 16px;
     }
 }
+
 .navbar_searchIconBox{
     cursor: pointer;
     width: 70px;
@@ -101,6 +103,9 @@
     height: 40px;
     cursor: pointer;
 }
+
+/* --------------middle navbar section-------------------- */
+
 .navbar-right{
     display: flex;
     gap: 20px;

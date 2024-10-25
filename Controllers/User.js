@@ -40,7 +40,7 @@ const signIn = async(req,res) =>{
             const token = jwt.sign({userId:user._id},'Its_My_Secret_Key')
             res.cookie('token',token,cookieOptions)
 
-            res.json({message:'Logged in Successfully',success:'true',token})
+            res.json({message:'Logged in Successfully',success:'true',token,user})
         }else{
             res.status(400).json({error:'Invalid credentials'})
         }

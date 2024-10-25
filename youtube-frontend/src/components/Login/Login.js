@@ -41,7 +41,15 @@ const Login = ({ setLoginModal }) => {
                     Login
                 </div>
 
-                {/* Please watch the video for the code} */}
+                <div className="loginCredentials">
+                    <div className="userNameLogin">
+                        <input  className='userNameLoginUserName' value={loginField.userName} onChange={(e)=>{handleOnChangeInput(e,"userName")}} placeholder='User Name' type="text" />
+                    </div>
+                    <div className="userNameLogin">
+                        <input  className='userNameLoginUserName' value={loginField.password} onChange={(e)=>{handleOnChangeInput(e,"password")}} placeholder='Password' type="password" />
+                    </div>
+
+                </div>
 
                 <div className="login_buttons">
                     <div className="login-btn" onClick={handleLoginFun}>Login</div>
@@ -49,7 +57,11 @@ const Login = ({ setLoginModal }) => {
                     <div className="login-btn" onClick={() => setLoginModal()}>Cancel</div>
                 </div>
 
-                {/* Please watch the video for the code} */}
+                {
+                    loader && <Box sx={{width : '100%'}}>
+                        <LinearProgress/>
+                    </Box>
+                }
 
 
             </div>

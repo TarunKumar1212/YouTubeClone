@@ -4,6 +4,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -72,7 +73,7 @@ const SignUp = () => {
                     
                     <input type="text" className='signUp_Inputs_inp' value={singUpFiled.channelName} onChange={(e) =>{handleInputFiled(e,"channelName")}}  placeholder='Channel Name'/>
                     <input type="text" className='signUp_Inputs_inp' value={singUpFiled.userName} onChange={(e) =>{handleInputFiled(e,"userName")}}  placeholder='User Name'/>
-                    <input type="text" className='signUp_Inputs_inp' value={singUpFiled.password} onChange={(e) =>{handleInputFiled(e,"password")}}  placeholder='Password'/>
+                    <input type="password" className='signUp_Inputs_inp' value={singUpFiled.password} onChange={(e) =>{handleInputFiled(e,"password")}}  placeholder='Password'/>
                     <input type="text" className='signUp_Inputs_inp' value={singUpFiled.about} onChange={(e) =>{handleInputFiled(e,"about")}}  placeholder='About Your Channel'/>
                     
 
