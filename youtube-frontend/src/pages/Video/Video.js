@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast,ToastContainer} from 'react-toastify'
+
+
 const Video = () => {
     const [message, setMessage] = useState("");
     const [data, setData] = useState(null);
@@ -14,23 +16,28 @@ const Video = () => {
     const [comments, setComments] = useState([]);
 
     const fetchVedioById = async () => {
-        await axios.get(`http://localhost:4000/api/getVideoById/${id}`).then((response) => {
+        await axios.get(`http://localhost:4000/api/getVideoById/${id}`)
+        .then((response) => {
             console.log(response.data.video);
             setData(response.data.video)
             setVideoURL(response.data.video.videoLink)
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err);
         })
     }
 
     const getCommentByVideoId = async () => {
-        await axios.get(`http://localhost:4000/commentApi/comment/${id}`).then((response) => {
+        await axios.get(`http://localhost:4000/commentApi/comment/${id}`)
+        .then((response) => {
             console.log(response);
             setComments(response.data.comments)
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err);
         })
     }
+
     useEffect(() => {
         fetchVedioById();
         getCommentByVideoId();
@@ -41,12 +48,14 @@ const Video = () => {
             "message":message,
             "video":id
         }
-        await axios.post('http://localhost:4000/commentApi/comment',body, { withCredentials: true }).then((resp)=>{
+        await axios.post('http://localhost:4000/commentApi/comment',body, { withCredentials: true })
+        .then((resp)=>{
             console.log(resp)
             const newComment = resp.data.comment;
             setComments([newComment,...comments]);
             setMessage("")
-        }).catch(err=>{
+        })
+        .catch(err=>{
             toast.error("Please Login First to comment")
         })
     }
@@ -56,7 +65,10 @@ const Video = () => {
                 <div className="video_youtube">
                     {data && <video width="400" controls autoPlay className='video_youtube_video'>
 
-                        {/* Please watch the video for the code} */}
+                        <source src={videoUrl} type='video/mp4'/>
+                        <source src={videoUrl} type='video/webm'/>
+                        
+                        Your Browser does not support video tag 
                     </video>}
 
                 </div>
@@ -77,7 +89,16 @@ const Video = () => {
                         </div>
 
                         <div className="youtube_video_likeBlock">
-                            {/* Please watch the video for the code} */}
+                           <div className="youtube_video_likeBlock_Like">
+                            <ThumbUpOutlinedIcon/>
+                            <div className="youtube_video_likeBlock_NoOfLikes">{data?.like}</div>
+                           </div>
+                            
+                            <div className="youtubeVideoDivider"></div>
+
+                            <div className="youtube_video_likeBlock_Like">
+                                <ThumbDownAltOutlinedIcon/>
+                            </div>
 
 
 
@@ -96,8 +117,16 @@ const Video = () => {
                     <div className="youtubeCommentSectionTitle">{comments.length} Comments</div>
 
                     <div className="youtubeSelfComment">
-                        {/* Please watch the video for the code} */}
+                        <img className='video_youtubeSelfCommentProfile' src="" alt="" />
+                        <div className="addAComment">
 
+                            {/* //className */}
+                            <input type="text" value={message} onChange={(e)=>{setMessage(e.target.value)}} className='addACommentInput'/>
+                            <div className="cancelSubmitComment">
+                                <div className="cancelComment">Cancel</div>
+                                <div className="cancelComment">Comment</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="youtubeOthersComments">
@@ -106,8 +135,20 @@ const Video = () => {
                             comments.map((item, index) => {
                                 return (
                                     <div className="youtubeSelfComment">
-                                        <img className='video_youtubeSelfCommentProfile' src={item?.user?.profilePic} />
-                                            {/* Please watch the video for the code} */}
+                                        <img className='video_youtubeSelfCommentProfile' src={item?.user?.profilePic} alt='profile' />
+
+                                        <div className="others_commentSection">
+                                            <div className="others_commentSectionHeader">
+                                                <div className="channelName_comment">{item?.user?.channelName}</div>
+                                                <div className="commentTimingOthers">{item?.createdAt.slice(0,10)}</div>
+                                            </div>
+
+                                            <div className="otherCommentSectionComment">
+                                                {item?.message}
+                                            </div>
+
+
+                                        </div>
 
 
                                     </div>
