@@ -13,6 +13,7 @@ const SignUp = () => {
     const [singUpFiled, setSignUpField] = useState({ "channelName": "", "userName": "", "password": "", "about": "", "profilePic": uploadedImageUrl });
     const [progressBar,setProgressBar] = useState(false);
     const navigate = useNavigate();
+
     const handleInputFiled = (event, name) => {
         setSignUpField({
             ...singUpFiled, [name]: event.target.value
@@ -44,7 +45,17 @@ const SignUp = () => {
 
     }
     const handleSignup = async () => {
-        // {/* Please watch the video for the code} */}
+        setProgressBar(true)
+        axios.post('http://localhost:4000/auth/signUp',singUpFiled)
+        .then((res)=>{
+            toast.success(res.data.message)
+            setProgressBar(false)
+            navigate('/')
+        })
+        .catch(err=>{
+            setProgressBar(false)
+            toast.error(err)
+        })
     }
 
 
@@ -59,13 +70,16 @@ const SignUp = () => {
 
                 <div className="signUp_Inputs">
                     
-                    {/* Please watch the video for the code} */}
-
+                    <input type="text" className='signUp_Inputs_inp' value={singUpFiled.channelName} onChange={(e) =>{handleInputFiled(e,"channelName")}}  placeholder='Channel Name'/>
+                    <input type="text" className='signUp_Inputs_inp' value={singUpFiled.userName} onChange={(e) =>{handleInputFiled(e,"userName")}}  placeholder='User Name'/>
+                    <input type="text" className='signUp_Inputs_inp' value={singUpFiled.password} onChange={(e) =>{handleInputFiled(e,"password")}}  placeholder='Password'/>
+                    <input type="text" className='signUp_Inputs_inp' value={singUpFiled.about} onChange={(e) =>{handleInputFiled(e,"about")}}  placeholder='About Your Channel'/>
+                    
 
                     <div className="image_upload_signup">
                         <input type='file' onChange={(e) => uploadImage(e)} />
                         <div className='image_upload_signup_div'>
-                            <img className='image_default_signUp' src={uploadedImageUrl} />
+                            <img className='image_default_signUp' src={uploadedImageUrl} alt=''/>
                         </div>
                     </div>
 
