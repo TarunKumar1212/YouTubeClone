@@ -42,7 +42,25 @@ const HomePage = ({ sideNavbar }) => {
             return (
               <Link to={`/watch/${item._id}`} className="youtube_Video">
 
-                {/* Please watch the video for the code} */}
+                <div className="youtube_thumbnailBox">
+                  <img src = {item.thumbnail} alt="Thumbnail" className='youtube_thumbnailPic' />
+                  <div className="youtube_timingThumbnail">
+                    28:05
+                  </div>
+                </div>
+
+                <div className="youtubeTitleBox">
+                  <div className="youtubeTitleBoxProfile">
+                    <img src={item?.user?.profilePic} alt="profile" className='youtube_thumbnail_Profile' />
+                  </div>
+
+                  <div className="youtubeTitleBox_Title">
+                    <div className="youtube_videoTitle">{item?.title}</div>
+                    <div className="youtube_channelName">{item?.user?.channelName}</div>
+                    <div className="youtubeVideo_views">{item?.like} likes</div>
+                  </div>
+                </div>
+                
 
               </Link>
             );
