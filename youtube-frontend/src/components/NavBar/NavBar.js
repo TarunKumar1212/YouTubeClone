@@ -82,7 +82,10 @@ const Navbar = ({setSideNavbarFunc,sideNavbar}) => {
       </div>
 
       <div className="navbar-middle">
-        {/* Please watch the video for the code} */}
+        <div className="navbar_searchBox">
+          <input type="text" placeholder='Search' className="navbar_searchBoxInput"  />
+          <div className="navbar_searchIconBox"><SearchIcon sx={{fontSize:"28px",color:"white"}}/></div>
+        </div>
 
         <div className="navbar_mike">
           <KeyboardVoiceIcon sx={{ color: "white" }} />
