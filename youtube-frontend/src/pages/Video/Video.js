@@ -36,7 +36,7 @@ const Video = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      }); 
   };
 
   useEffect(() => {
@@ -149,7 +149,7 @@ const Video = () => {
               />
               <div className="cancelSubmitComment">
                 <div className="cancelComment">Cancel</div>
-                <div className="cancelComment">Comment</div>
+                <div className="cancelComment" onClick={handleComment}>Comment</div>
               </div>
             </div>
           </div>

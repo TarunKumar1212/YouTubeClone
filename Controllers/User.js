@@ -9,6 +9,7 @@ const cookieOptions = {
 };
 
 const signUp = async (req, res) => {
+  
   try {
     const { channelName, userName, about, profilePic, password } = req.body;
     const isExist = await User.findOne({ userName });

@@ -10,7 +10,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Link,useNavigate } from 'react-router-dom';
 import Login from '../Login/Login.js';
 import axios from 'axios';
+
 const Navbar = ({setSideNavbarFunc,sideNavbar}) => {
+  
   const [userPic, setUserPic] = useState("https://th.bing.com/th/id/OIP.Wy2uo_y-ttULYs4chLmqSAAAAA?rs=1&pid=ImgDetMain")
   const [navbarModal,setNavbarModal] = useState(false);
   const [login,setLogin] = useState(false);

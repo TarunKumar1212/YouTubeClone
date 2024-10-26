@@ -29,7 +29,7 @@ const VideoUpload = () => {
         data.append('upload_preset', 'youtube-clone');
         try {
              // cloudName="dkatbsarb"
-            
+             
 
              const response = await axios.post(`https://api.cloudinary.com/v1_1/dkatbsarb/${type}/upload`, data)
              const Url = response.data.url;
@@ -55,9 +55,22 @@ const VideoUpload = () => {
         }
     },[])
     
-    console.log(inputField)
+    //  console.log(inputField)
+
     const handleSubmitFunc = async()=>{
-        // {/* Please watch the video for the code} */}
+        setLoader(true)
+        await axios.post('http://localhost:4000/api/video',inputField,{withCredentials:true})
+        .then((res)=>{
+            console.log(res);
+            setLoader(false)
+            navigate('/')
+            
+        })
+        .catch(err=>{
+            console.log(err);
+            setLoader(false)
+            
+        })
 
     }
 
@@ -72,7 +85,11 @@ const VideoUpload = () => {
                 </div>
 
                 <div className="uploadForm">
-                    {/* Please watch the video for the code} */}
+                    <input type="text" value={inputField.title} onChange={(e)=>{handleOnChangeInput(e,"title")}} className="uploadFormInputs" placeholder='Title of Video' />
+                    <input type="text" value={inputField.description} onChange={(e)=>{handleOnChangeInput(e,"description")}} className="uploadFormInputs" placeholder='Description' />
+                    <input type="text" value={inputField.videoType} onChange={(e)=>{handleOnChangeInput(e,"videoType")}} className="uploadFormInputs" placeholder='Category' />
+                    <div>Thumbnail <input type="file" accept='image/*' onChange={(e)=>{uploadImage(e,"image")}}/></div>
+                    <div>Video <input type="file" accept='video/mp4,video/webm,video/*'onChange={(e)=>{uploadImage(e,"video")}} /></div>
 
                     {
                     loader && <Box sx={{ display: 'flex' }}>
